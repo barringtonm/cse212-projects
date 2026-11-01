@@ -1,3 +1,5 @@
+using System;
+using System.Collections.Generic;
 public static class Arrays
 {
     /// <summary>
@@ -6,14 +8,21 @@ public static class Arrays
     /// integer greater than 0.
     /// </summary>
     /// <returns>array of doubles that are the multiples of the supplied number</returns>
-    public static double[] MultiplesOf(double number, int length)
+    public static double[] MultiplesOf(double value, int count)
     {
-        // TODO Problem 1 Start
-        // Remember: Using comments in your program, write down your process for solving this problem
-        // step by step before you write the code. The plan should be clear enough that it could
-        // be implemented by another person.
+        //1.Create a new array of the required size
+        double[] result = new double[count];
 
-        return []; // replace this return statement with your own
+        // 2.loop through to populate the array with multiples
+        for (int i = 0; i < count; i++)
+        {
+
+            //3.Calculate the multiple(index + 1 multiplied by the start value)
+            //and assign it to the currentindex
+            result[i] = value * (i + 1);
+        }
+        // 4. Return the populated array
+        return result;
     }
 
     /// <summary>
@@ -25,9 +34,32 @@ public static class Arrays
     /// </summary>
     public static void RotateListRight(List<int> data, int amount)
     {
-        // TODO Problem 2 Start
-        // Remember: Using comments in your program, write down your process for solving this problem
-        // step by step before you write the code. The plan should be clear enough that it could
-        // be implemented by another person.
+        //1.Handle edge caseswhere no rotation isneede or possible
+        if (data == null || data.Count <= 1 || amount <= 0)
+        {
+            return;
+        }
+
+        // 2.Normalize the rotation amount using modulo to handle large numbers safely
+        int k = amount % data.Count;
+        if (k == 0)
+        {
+
+            return;
+
+        }
+
+
+        // 3. Determine the index where the list splits
+
+        int splitIndex = data.Count - k;
+
+        // 4.Extract the right most section that will shift to the front
+        List<int> rightPart = data.GetRange(splitIndex, k);
+
+        //5.Extract the left remaining left most section.
+        data.RemoveRange(splitIndex, k);
+        //6. Insert that section cleanly at index 0 (the very front)
+        data.InsertRange(0, rightPart);
     }
 }
