@@ -1,0 +1,34 @@
+json
+{
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "name": ".NET Core Launch (console)",
+            "type": "coreclr",
+            "request": "launch",
+            "preLaunchTask": "build",
+            "program": "${workspaceFolder}/sandbox/bin/Debug/net8.0/sandbox.dll",
+            "args": [],
+            "cwd": "${workspaceFolder}/sandbox",
+            "console": "internalConsole",
+            "stopAtEntry": false
+        }
+    ]
+    "tasks": {
+        "version": "2.0.0",
+        "tasks": [
+            {
+                "label": "build",
+                "command": "dotnet",
+                "type": "process",
+                "args": [
+                    "build",
+                    "${workspaceFolder}/sandbox/sandbox.csproj",
+                    "/property:GenerateFullPaths=true",
+                    "/consoleloggerparameters:NoSummary"
+                ],
+                "problemMatcher": "$msCompile"
+            }
+        ]
+    }
+}
