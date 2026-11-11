@@ -1,4 +1,9 @@
-﻿public class DuplicateCounterSolution
+﻿public interface IDuplicateCounterSolution
+{
+    static abstract void Run();
+}
+
+public class DuplicateCounterSolution : IDuplicateCounterSolution
 {
     //CSE 212 Lesson 5C Solved
     //Count how many duplicates are in a collection of data.
@@ -30,28 +35,29 @@
     /// </summary>
     private static int CountDuplicates(int[] data)
     {
-        // Add code here.
-        var unique = new HashSet<int>();
-        var duplicates = 0;
+        HashSet<int> seen = new HashSet<int>();
+        int duplicates = 0;
 
-        foreach (var x in data)
+        foreach (int item in data)
         {
-            if (unique.Contains(x))
+            if (seen.Contains(item))
+            {
                 duplicates++;
+            }
             else
-                unique.Add(x);
+            {
+                seen.Add(item);
+            }
         }
 
         return duplicates;
     }
 
     /// <summary>
-    /// Add everything in the data to the set. Duplicates will be automatically ignored.
-    /// Subtract the length of the set from the length of the data.
+    /// Use LINQ to group the data by value, then count how many groups have more than one item.
     /// </summary>
     private static int CountDuplicatesAlternate(int[] data)
     {
-        var unique = new HashSet<int>(data);
-        return data.Length - unique.Count;
+        return data.GroupBy(x => x).Count(g => g.Count() > 1);
     }
 }
