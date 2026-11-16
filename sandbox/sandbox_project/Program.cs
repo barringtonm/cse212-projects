@@ -11,7 +11,7 @@ namespace ArrayListExample
             //Console.WriteLine(result);
             ArrayList arrayList = new ArrayList() { 5 };
             arrayList.Add(6);
-            arrayList.AddRange(new int[] { 7, 8, });
+            arrayList.AddRange(new int[] { -7, 8, });
             arrayList.AddRange(new object[] { "Marcin", "Kate" });
             arrayList.Insert(5, 7.8);
 
