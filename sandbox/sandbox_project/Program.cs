@@ -1,45 +1,29 @@
 using System;
 using System.Collections;
-namespace ArrayListExample
-{
-    public class Program
-    {
-        public static void Main(string[] args)
-        {
-            //code from your book
-            //var result = DoSomething("Hello World");
-            //Console.WriteLine(result);
-            ArrayList arrayList = new ArrayList() { 5 };
-            arrayList.Add(6);
-            arrayList.AddRange(new int[] { -7, 8, });
-            arrayList.AddRange(new object[] { "Marcin", "Kate" });
-            arrayList.Insert(5, 7.8);
+using System.Linq;
 
-            //Added loop so you can see the output in the console.
-            foreach (object element in arrayList)
-            {
-                Console.WriteLine(element);
-            }
-
-
-        }
-        //public static string DoSomething(string text)
-        // {
-        // var newText = "";
-        //foreach (var letter in text)
-        // {
-        //if (letter != ' ')
-        //   {
-        //var newLetter = (char)(letter + 1);
-        // newText += newLetter;
-        //   }
-        //  else
-        //  {
-        // newText += letter;
-        //
-
-        // 📍// PUT IT HERE (Just before returning the value)
-        //  Console.WriteLine(newText);
-        // return newText;
-    }
-}
+List<int> list = [6, 90, -20, 0, 4, 1, 8, -20, 41];
+int min = list.Min();
+int max = list.Max();
+int sum = list.Sum();
+int average = (int)list.Average();
+bool allPositive = list.All(x => x > 0);
+bool anyZero = list.Any(x => x == 0);
+int existingElement = list.ElementAtOrDefault(5);
+int nonExistingElemenent = list.ElementAtOrDefault(100);
+List<int> unique = list.Distinct().ToList();
+List<int> ordered = list.OrderBy(x => x).ToList();
+List<int> skipped = list.Skip(4).ToList();
+List<int> taken = list.Take(3).ToList();
+Console.WriteLine($"Minimum: {min}");
+Console.WriteLine($"Maximum: {max}");
+Console.WriteLine($"Sum: {sum}");
+Console.WriteLine($"Average: {average}");
+Console.WriteLine($"All positive: {allPositive}");
+Console.WriteLine($"Any zero: {anyZero}");
+Console.WriteLine($"Existing element at index 5: {existingElement}");
+Console.WriteLine($"Non-existing element at index 100: {nonExistingElemenent}");
+Console.WriteLine($"Unique elements: {string.Join(", ", unique)}");
+Console.WriteLine($"Ordered elements: {string.Join(", ", ordered)}");
+Console.WriteLine($"Elements after skipping 4: {string.Join(", ", skipped)}");
+Console.WriteLine($"Elements after taking 3: {string.Join(", ", taken)}");
