@@ -1,29 +1,17 @@
 using System;
-using System.Collections;
+using System.Collections.Generic;
 using System.Linq;
 
-List<int> list = [6, 90, -20, 0, 4, 1, 8, -20, 41];
-int min = list.Min();
-int max = list.Max();
-int sum = list.Sum();
-int average = (int)list.Average();
-bool allPositive = list.All(x => x > 0);
-bool anyZero = list.Any(x => x == 0);
-int existingElement = list.ElementAtOrDefault(5);
-int nonExistingElemenent = list.ElementAtOrDefault(100);
-List<int> unique = list.Distinct().ToList();
-List<int> ordered = list.OrderBy(x => x).ToList();
-List<int> skipped = list.Skip(4).ToList();
-List<int> taken = list.Take(3).ToList();
-Console.WriteLine($"Minimum: {min}");
-Console.WriteLine($"Maximum: {max}");
-Console.WriteLine($"Sum: {sum}");
-Console.WriteLine($"Average: {average}");
-Console.WriteLine($"All positive: {allPositive}");
-Console.WriteLine($"Any zero: {anyZero}");
-Console.WriteLine($"Existing element at index 5: {existingElement}");
-Console.WriteLine($"Non-existing element at index 100: {nonExistingElemenent}");
-Console.WriteLine($"Unique elements: {string.Join(", ", unique)}");
-Console.WriteLine($"Ordered elements: {string.Join(", ", ordered)}");
-Console.WriteLine($"Elements after skipping 4: {string.Join(", ", skipped)}");
-Console.WriteLine($"Elements after taking 3: {string.Join(", ", taken)}");
+LinkedList<string> linkedList = new();
+linkedList.AddFirst("A");
+linkedList.Remove("B");
+linkedList.Find("C");
+linkedList.AddLast("E");
+
+
+
+Console.WriteLine("Linked List Contents:");
+foreach (var item in linkedList)
+{
+    Console.WriteLine(item);
+}
