@@ -1,37 +1,27 @@
 using System;
 using System.Collections.Generic;
-
-long Fibonacci(int n, Dictionary<int, long> remember = null)
+Permutations("ABCD");
+void Permutations(string letters, string word = "")
 {
+    // Try adding each of the available letters
+    // to the 'word' and add up all the
+    // resulting permutations.
+    if (letters.Length == 0)
+    {
+        Console.WriteLine(word);
+    }
+    else
+    {
+        for (var i = 0; i < letters.Length; i++)
+        {
+            // Make a copy of the letters to pass to the
+            // the next call to permutations.  We need
+            // to remove the letter we just added before
+            // we call permutations again.
+            var lettersLeft = letters.Remove(i, 1);
 
-    // If this is the first time calling the function, then
-    // we need to create the dictionary.
-    if (remember == null)
-        remember = new Dictionary<int, long>();
-
-    // Base Case
-    if (n <= 2)
-        return 1;
-
-    // Check if we have solved this one before
-    if (remember.ContainsKey(n))
-        return remember[n];
-
-    // Otherwise solve with recursion
-    var result = Fibonacci(n - 1, remember) + Fibonacci(n - 2, remember);
-
-    // Remember result for potential later use
-    remember[n] = result;
-    return result;
+            // Add the new letter to the word we have so far
+            Permutations(lettersLeft, word + letters[i]);
+        }
+    }
 }
-
-
-
-Console.WriteLine(Fibonacci(1));   // 1
-Console.WriteLine(Fibonacci(2));   // 1
-Console.WriteLine(Fibonacci(3));   // 2
-Console.WriteLine(Fibonacci(4));   // 3
-Console.WriteLine(Fibonacci(10));  // 55
-Console.WriteLine(Fibonacci(90));  // 2880067194370816120 (This one will
-                                   // not work if you do not have the
-                                   // `remember` dictionary implemented).
