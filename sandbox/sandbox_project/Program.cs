@@ -1,19 +1,37 @@
 using System;
 using System.Collections.Generic;
 
-int Fib(int n)
+long Fibonacci(int n, Dictionary<int, long> remember = null)
 {
+
+    // If this is the first time calling the function, then
+    // we need to create the dictionary.
+    if (remember == null)
+        remember = new Dictionary<int, long>();
+
+    // Base Case
     if (n <= 2)
-    {
-        // Fib(2) = 1 and Fib(1) = 1
         return 1;
-    }
-    else
-    {
-        // Fib(n) = Fib(n - 1) + Fib(n - 2)
-        return Fib(n - 1) + Fib(n - 2);
-    }
+
+    // Check if we have solved this one before
+    if (remember.ContainsKey(n))
+        return remember[n];
+
+    // Otherwise solve with recursion
+    var result = Fibonacci(n - 1, remember) + Fibonacci(n - 2, remember);
+
+    // Remember result for potential later use
+    remember[n] = result;
+    return result;
 }
-Console.WriteLine("Enter a number to calculate its Fibonacci value:");
-int number = Convert.ToInt32(Console.ReadLine());
-Console.WriteLine($"The Fibonacci value of {number} is {Fib(number)}");
+
+
+
+Console.WriteLine(Fibonacci(1));   // 1
+Console.WriteLine(Fibonacci(2));   // 1
+Console.WriteLine(Fibonacci(3));   // 2
+Console.WriteLine(Fibonacci(4));   // 3
+Console.WriteLine(Fibonacci(10));  // 55
+Console.WriteLine(Fibonacci(90));  // 2880067194370816120 (This one will
+                                   // not work if you do not have the
+                                   // `remember` dictionary implemented).
