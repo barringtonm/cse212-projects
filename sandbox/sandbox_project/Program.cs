@@ -1,19 +1,16 @@
 using System;
 using System.Collections.Generic;
-SayHello(4);
-
-
-void SayHello(int count)
+Console.WriteLine(Factorial(5));
+int Factorial(int n)
 {
-
-    if (count <= 0)
+    if (n <= 1)
     {
-        return;
+        // 1! = 1 (no recursion)
+        return 1;
     }
     else
     {
-        Console.WriteLine("Hello");
-        SayHello(count - 1);
+        // n! = n * (n - 1)!
+        return (n * Factorial(n - 1));
     }
-
 }
